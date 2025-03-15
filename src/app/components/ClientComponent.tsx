@@ -41,12 +41,12 @@ const ClientComponent = () => {
         {countries.map((country, index) => (
           <div
             key={`country-${country.name.common}-${index}`}
-            className="p-2 text-center border-solid border-slate-400 border-2 rounded-lg"
+            className="rounded-lg border-2 border-solid border-slate-400 p-2 text-center"
           >
             <img
               alt={country.name.common}
               src={country.flags.svg}
-              className="rounded-lg w-full"
+              className="w-full rounded-lg"
             />
             {country.name.common}
           </div>

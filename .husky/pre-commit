@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+echo "Ejecutando Commitlint..."
+npx commitlint --edit $(git rev-parse --git-path COMMIT_EDITMSG)"
 
 npm run lint && npm run format
