@@ -1,4 +1,17 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run lint && npm run format
+echo "Verificando commit..."
+#Verifica el comit
+if ! npx --no -- commitlint --edit $(git rev-parse --git-path COMMIT_EDITMSG); then
+  echo "❌ Commitlint detectó un error. Corrige el mensaje antes de continuar."
+  exit 1
+fi
+echo "✅ Commitlint pasó. Ejecutando ESLint y Prettier..."
+
+echo "Ejecutando ESLint..."
+npm run lint
+
+echo "Ejecutando Prettier..."
+npm run format
+
