@@ -6,5 +6,6 @@ module.exports = {
       'always',
       ['feat', 'fix', 'test', 'chore', 'refactor'], // Tipos permitidos
     ],
+    'scope-empty': [2, 'never'],
   },
 };
