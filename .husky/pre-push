@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+# Obtén la rama de destino del push
+REMOTE_BRANCH=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} | sed 's/.*\///')
+
+if [ "$REMOTE_BRANCH" != "main" ]; then
+  echo "¡Solo puedes hacer push a la rama 'main'!"
+  exit 1  # Detener el push si no estamos empujando a la rama 'main'
+fi
