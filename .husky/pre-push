@@ -5,9 +5,16 @@ BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 if [ "$BRANCH" = "test" ]; then
   echo "🚀 Pasando los cambios de test a main..."
+  
+  # Actualiza la rama main desde el remoto antes de hacer el merge
+  git fetch origin main
+  
+  # Hacer merge de los cambios de test en main
   git checkout main
-  git merge test
-  git push origin main
+  git merge origin/main  # Asegura que tienes la última versión de main antes de hacer el merge
+  git merge test         # Hace el merge de test a main
+  git push origin main   # Hace el push de main
+  
   git checkout test
   exit 0
 fi
