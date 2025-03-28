@@ -6,7 +6,7 @@ BRANCH=$(git rev-parse --abbrev-ref HEAD)
 if [ "$BRANCH" != "test" ]; then
   echo "⚠️  Moviendo automáticamente el commit a la rama test..."
 
-  # Guarda solo los archivos NO añadidos al staging
+  # Guarda solo archivos NO añadidos al staging
   git stash --keep-index  
 
   git checkout test  
@@ -14,7 +14,7 @@ if [ "$BRANCH" != "test" ]; then
   # Restaura solo los archivos que no estaban en staging
   git stash pop  
 
-  # No usamos git add . porque ya estaban en staging
+  
   exit 0
 fi
 

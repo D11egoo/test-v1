@@ -1,9 +1,16 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
-# Obtén la rama de destino del push
-REMOTE_BRANCH=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} | sed 's/.*\///')
+# Obtén la rama remota de destino
+REMOTE_BRANCH=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null | sed 's/.*\///')
 
+# Si la rama no tiene upstream, muestra un mensaje y permite el push
+if [ -z "$REMOTE_BRANCH" ]; then
+  echo "⚠️  No se detectó una rama remota. Asegúrate de haber hecho 'git push --set-upstream origin test' al menos una vez."
+  exit 0  # No bloquea el push
+fi
+
+# Bloquea el push si no es a main
 if [ "$REMOTE_BRANCH" != "main" ]; then
-  echo "¡Solo puedes hacer push a la rama 'main'!"
-  exit 1  # Detener el push si no estamos empujando a la rama 'main'
+  echo "❌ ¡Solo puedes hacer push a la rama 'main'!"
+  exit 1
 fi
