@@ -17,4 +17,6 @@ const prettierConfig = [...compat.extends('plugin:prettier/recommended')];
 
 const tailwindConfig = [...compat.extends('plugin:tailwindcss/recommended')];
 
-export default [...eslintConfig, ...prettierConfig, ...tailwindConfig];
+const config = [...eslintConfig, ...prettierConfig, ...tailwindConfig];
+
+export default config;
