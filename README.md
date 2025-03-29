@@ -11,8 +11,4 @@ Iniciar el servidor:
 
 - npm run dev
 
-Sobre mi:
-No tengo mucha experiencia con React, pero estoy comprometido a aprender y mejorar continuamente.
-=======
->>>>>>> Stashed changes
-test
+

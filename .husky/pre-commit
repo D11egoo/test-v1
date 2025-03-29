@@ -6,11 +6,12 @@ BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 
 if [ "$BRANCH_NAME" != "test" ]; then
   echo "Este hook pre-commit solo se ejecuta en la rama 'test'."
-  exit 0 
+  exit 1
 fi
 
 echo "Ejecutando ESLint..."
 npm run lint
+
 
 echo "Ejecutando Prettier..."
 npm run format 

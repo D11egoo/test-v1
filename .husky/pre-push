@@ -5,6 +5,9 @@
 BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 
 if [ "$BRANCH_NAME" != "main" ]; then
-  echo "Este hook pre-push solo se ejecuta en la rama 'main'."
-  exit 0  # Sale sin hacer nada si no estás en la rama 'main'
+  echo "Este hook pre-push solo permite hacer push en la rama 'main'."
+  exit 1  # Sale con código de error para bloquear el push
 fi
+
+# Si estamos en la rama 'main', el push puede continuar
+echo "Push permitido en la rama 'main'."
