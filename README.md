@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 Comandos utilizados :
 
 - npx create-next-app@latest
@@ -12,4 +13,6 @@ Iniciar el servidor:
 
 Sobre mi:
 No tengo mucha experiencia con React, pero estoy comprometido a aprender y mejorar continuamente.
+=======
+>>>>>>> Stashed changes
 test

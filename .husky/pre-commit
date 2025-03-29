@@ -1,28 +1,20 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# Verifica la rama actual 
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+
+if [ "$BRANCH_NAME" != "test" ]; then
+  echo "Este hook pre-commit solo se ejecuta en la rama 'test'."
+  exit 0 
+fi
+
 echo "Ejecutando ESLint..."
 npm run lint
 
 echo "Ejecutando Prettier..."
-npm run format
+npm run format 
 
 
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
-
-if [ "$BRANCH" != "test" ]; then
-  echo "⚠️  Moviendo automáticamente el commit a la rama test..."
-
-  # Guarda solo archivos NO añadidos al staging
-  git stash --keep-index  
-
-  git checkout test  
-
-  # Restaura solo los archivos que no estaban en staging
-  git stash pop  
-
-  
-  exit 0
-fi
 
 

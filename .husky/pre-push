@@ -1,20 +1,10 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
-#!/bin/sh
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-if [ "$BRANCH" = "test" ]; then
-  echo "🚀 Pasando los cambios de test a main..."
-  
-  # Actualiza la rama main desde el remoto antes de hacer el merge
-  git fetch origin main
-  
-  # Hacer merge de los cambios de test en main
-  git checkout main
-  git merge origin/main  # Asegura que tienes la última versión de main antes de hacer el merge
-  git merge test         # Hace el merge de test a main
-  git push origin main   # Hace el push de main
-  
-  git checkout test
-  exit 0
+# Verifica si la rama actual es 'main'
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+
+if [ "$BRANCH_NAME" != "main" ]; then
+  echo "Este hook pre-push solo se ejecuta en la rama 'main'."
+  exit 0  # Sale sin hacer nada si no estás en la rama 'main'
 fi
