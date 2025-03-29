@@ -10,5 +10,3 @@ Aceptar todas las configuaraciones:
 Iniciar el servidor:
 
 - npm run dev
-
-
